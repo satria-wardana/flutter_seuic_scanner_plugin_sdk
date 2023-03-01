@@ -1,0 +1,46 @@
+group 'com.seuic.scanner.flutter_seuic_scanner_plugin_sdk'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libsref')
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation files('libsref/ScannerAPI.jar')
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
