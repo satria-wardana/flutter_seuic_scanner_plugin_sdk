@@ -3,7 +3,6 @@ package com.seuic.scanner.flutter_seuic_scanner_plugin_sdk;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,10 +15,10 @@ import com.seuic.scanner.DecodeInfo;
 import com.seuic.scanner.DecodeInfoCallBack;
 import com.seuic.scanner.Scanner;
 import com.seuic.scanner.ScannerFactory;
-import com.seuic.scanner.ScannerKey;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import com.seuic.scanner.flutter_seuic_scanner_plugin_sdk.R;
 
 public class ScannerService extends Service implements DecodeInfoCallBack {
 
