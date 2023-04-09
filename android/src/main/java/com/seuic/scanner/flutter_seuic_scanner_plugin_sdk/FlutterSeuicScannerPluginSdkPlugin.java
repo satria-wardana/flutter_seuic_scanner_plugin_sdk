@@ -39,6 +39,7 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
         //Android 8.0  26
         //一种 Notification 对应一个 NotificationChannel
         //在 Application 注册 channel 可以在 app 启动时就完成注册
+        System.out.println("1111111");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("messages", "Messages", NotificationManager.IMPORTANCE_LOW);
             NotificationManager manager = applicationContext.getSystemService(NotificationManager.class);
@@ -73,6 +74,7 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
             result.success("Android " + android.os.Build.VERSION.RELEASE);
         } else if (call.method.equals(Method.STOP_SCANNER_SERVICE)) {
             applicationContext.stopService(scannerIntent);
+
             result.success(Method.STOP_SCANNER_SERVICE);
         } else if (call.method.equals(Method.START_SCANNER_SERVICE)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

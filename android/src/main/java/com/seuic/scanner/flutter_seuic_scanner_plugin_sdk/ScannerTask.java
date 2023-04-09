@@ -45,8 +45,11 @@ public class ScannerTask implements Runnable {
                     }
                 }
             }
+//            System.out.println("关闭ScannerKey");
+//            ScannerKey.close();
         }
-        ScannerKey.close();
+//        System.out.println("关闭ScannerKey1");
+//        ScannerKey.close();
     }
 
 }

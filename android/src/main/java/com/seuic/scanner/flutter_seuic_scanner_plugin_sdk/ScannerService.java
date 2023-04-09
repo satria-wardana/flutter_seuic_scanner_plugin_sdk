@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -18,7 +19,6 @@ import com.seuic.scanner.ScannerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import com.seuic.scanner.flutter_seuic_scanner_plugin_sdk.R;
 
 public class ScannerService extends Service implements DecodeInfoCallBack {
 
@@ -40,13 +40,18 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
             String description = "my-service";
             int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(id, description, importance);
+//            channel.enableVibration(true);
+            //振动模式
+//            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             manager.createNotificationChannel(channel);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "messages")
                     .setContentText("扫描服务正在后台运行")
                     .setContentTitle("ScannerService")
-                    .setSmallIcon(R.mipmap.ic_launcher);
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    ;
 
-            manager.notify(1, builder.build());
+//            manager.notify(1, builder.build());
             startForeground(101, builder.build());
         }
 
@@ -54,9 +59,7 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
         scanner = ScannerFactory.getScanner(this);
         scanner.open();
         scanner.setDecodeInfoCallBack(this);
-
-
-
+        scanner.enable();
         executorService.execute(new ScannerTask(scanner));
     }
 
@@ -72,8 +75,12 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
+
+
+
 
     /**
      * @param intent The Intent that was used to bind to this service,
@@ -104,9 +111,12 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
 
     @Override
     public void onDestroy() {
-        scanner.setDecodeInfoCallBack(null);
-        scanner.close();
         executorService.shutdownNow();
+//        executorService.shutdown();
+        scanner.setDecodeInfoCallBack(null);
+//        scanner.stopScan();
+        scanner.close();
+        scanner = null;
         deleteIconToStatusbar();
         super.onDestroy();
     }
