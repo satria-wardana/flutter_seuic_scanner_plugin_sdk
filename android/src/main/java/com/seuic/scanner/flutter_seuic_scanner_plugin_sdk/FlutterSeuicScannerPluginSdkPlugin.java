@@ -32,6 +32,8 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
 
     private Context applicationContext;
 
+    private Intent scannerIntent;
+
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
 
@@ -45,14 +47,6 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
             NotificationManager manager = applicationContext.getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
-//        Intent intent = new Intent(applicationContext, ScannerService.class);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            System.out.println("33");
-//            applicationContext.startForegroundService(intent);
-//        } else {
-//            System.out.println("4");
-//            applicationContext.startService(intent);
-//        }
 
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), Channel.CHANNEL);
         channel.setMethodCallHandler(this);
@@ -64,7 +58,7 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        Intent scannerIntent = new Intent(applicationContext, ScannerService.class);
+        scannerIntent = new Intent(applicationContext, ScannerService.class);
         if (call.method.equals("getPlatformVersion")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 applicationContext.startForegroundService(scannerIntent);
@@ -91,5 +85,7 @@ public class FlutterSeuicScannerPluginSdkPlugin implements FlutterPlugin, Method
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
+        eventChannel.setStreamHandler(null);
+        applicationContext.stopService(scannerIntent);
     }
 }

@@ -40,9 +40,6 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
             String description = "my-service";
             int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(id, description, importance);
-//            channel.enableVibration(true);
-            //振动模式
-//            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             manager.createNotificationChannel(channel);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "messages")
                     .setContentText("扫描服务正在后台运行")
@@ -79,16 +76,6 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
         return Service.START_STICKY;
     }
 
-
-
-
-    /**
-     * @param intent The Intent that was used to bind to this service,
-     *               as given to {@link android.content.Context#bindService
-     *               Context.bindService}.  Note that any extras that were included with
-     *               the Intent at that point will <em>not</em> be seen here.
-     * @return
-     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
