@@ -1,6 +1,6 @@
 # flutter_seuic_scanner_plugin_sdk
 
-A Flutter Plugin compatible with Dongji UTouch mobile phone scanning based on SDK.
+A Flutter Plugin compatible with 东集 UTouch mobile phone scanning based on SDK.
 
 ## Getting Started
 
