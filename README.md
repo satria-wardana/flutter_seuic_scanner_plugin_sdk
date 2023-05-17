@@ -1,6 +1,6 @@
 # flutter_seuic_scanner_plugin_sdk
 
-A Flutter Plugin compatible with 东集 UTouch mobile phone scanning based on SDK.
+A Flutter plugin based on the seuic(东集) UTouch mobile phone scanning SDK
 
 ## Getting Started
 
@@ -8,6 +8,16 @@ Before use, it is necessary to add it in AndroidManifest.xml
 
 ```xml
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+```
+
+in pubspec.yml dependencies add
+
+```yaml
+
+flutter_seuic_scanner_plugin_sdk:
+  git:
+    url: https://github.com/Soullose/flutter_seuic_scanner_plugin_sdk.git
+
 ```
 
 ## Get Scanned QR Code
