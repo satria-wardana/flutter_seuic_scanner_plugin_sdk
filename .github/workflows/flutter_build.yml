@@ -25,7 +25,7 @@ jobs:
       # Download all Flutter packages
       - name: Download dependencies
         run: flutter pub get
-        working-directory: ${{env.source-directory}}
+        #working-directory: ${{env.source-directory}}
 
       # Build Android version of the example App
       - name: Run Android build
