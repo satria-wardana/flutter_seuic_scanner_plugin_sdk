@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     name: Build
+    env:
+      source-directory: ./flutter_seuic_scanner_plugin_sdk 
+      example-directory: ./flutter_seuic_scanner_plugin_sdk/example
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,5 +22,6 @@ jobs:
           flutter-version: '3.10.0'
           channel: 'stable'
       - run: flutter pub get
-      - run: cd example
+      
+      - working-directory: ${{env.example-directory}}
       - run: flutter build apk --release --target-platform=android-arm64 --no-shrink
