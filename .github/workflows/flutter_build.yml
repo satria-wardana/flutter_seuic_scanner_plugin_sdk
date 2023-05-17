@@ -1,0 +1,22 @@
+name: Flutter_build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.0'
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build apk --release --target-platform=android-arm64 --no-shrink
