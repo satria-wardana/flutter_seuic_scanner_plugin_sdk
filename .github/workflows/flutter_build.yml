@@ -21,7 +21,13 @@ jobs:
         with:
           flutter-version: '3.10.0'
           channel: 'stable'
-      - run: flutter pub get
-      
-      - working-directory: ${{env.example-directory}}
-      - run: flutter build apk --release --target-platform=android-arm64 --no-shrink
+          
+      # Download all Flutter packages
+      - name: Download dependencies
+        run: flutter pub get
+        working-directory: ${{env.source-directory}}
+
+      # Build Android version of the example App
+      - name: Run Android build
+        run: flutter build apk --release
+        working-directory: ${{env.example-directory}}
