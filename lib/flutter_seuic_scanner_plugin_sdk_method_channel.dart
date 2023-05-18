@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_seuic_scanner_plugin_sdk/BarcodeScanner.dart';
+import 'package:flutter_seuic_scanner_plugin_sdk/barcode_scanner.dart';
 import 'package:flutter_seuic_scanner_plugin_sdk/seuic_scanner_channel.dart';
 
 import 'flutter_seuic_scanner_plugin_sdk_platform_interface.dart';
@@ -18,7 +17,6 @@ class MethodChannelFlutterSeuicScannerPluginSdk
   @visibleForTesting
   final eventChannel = EventChannel(SeuicScannerChannel.scannerEventChannel);
 
-
   @override
   Stream<BarcodeScanner> getScanner() {
     return eventChannel
@@ -28,11 +26,13 @@ class MethodChannelFlutterSeuicScannerPluginSdk
 
   @override
   Future<String> startScannerService() async {
-    return await methodChannel.invokeMethod(SeuicScannerChannel.startMethodChannel);
+    return await methodChannel
+        .invokeMethod(SeuicScannerChannel.startMethodChannel);
   }
 
   @override
   Future<String> stopScannerService() async {
-    return await methodChannel.invokeMethod(SeuicScannerChannel.stopMethodChannel);
+    return await methodChannel
+        .invokeMethod(SeuicScannerChannel.stopMethodChannel);
   }
 }

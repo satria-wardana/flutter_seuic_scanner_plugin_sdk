@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/services.dart';
 
 class BarcodeScanner {
@@ -21,7 +19,6 @@ class BarcodeScanner {
       ..barcode = map['barcode'] as String
       ..codeType = map['codeType'] as String
       ..length = map['length'] as int;
-
   }
 
   static const MethodCodec codec = JSONMethodCodec();

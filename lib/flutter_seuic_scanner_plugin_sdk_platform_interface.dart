@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'BarcodeScanner.dart';
+import 'barcode_scanner.dart';
 import 'flutter_seuic_scanner_plugin_sdk_method_channel.dart';
 
 abstract class FlutterSeuicScannerPluginSdkPlatform extends PlatformInterface {
@@ -9,7 +9,8 @@ abstract class FlutterSeuicScannerPluginSdkPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FlutterSeuicScannerPluginSdkPlatform _instance = MethodChannelFlutterSeuicScannerPluginSdk();
+  static FlutterSeuicScannerPluginSdkPlatform _instance =
+      MethodChannelFlutterSeuicScannerPluginSdk();
 
   /// The default instance of [FlutterSeuicScannerPluginSdkPlatform] to use.
   ///
@@ -24,16 +25,15 @@ abstract class FlutterSeuicScannerPluginSdkPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-
   Stream<BarcodeScanner> getScanner() {
     throw UnimplementedError('getScannerCode() has not been implemented.');
   }
 
-  Future<String> startScannerService(){
+  Future<String> startScannerService() {
     throw UnimplementedError('startScannerService() has not been implemented.');
   }
 
-  Future<String> stopScannerService(){
+  Future<String> stopScannerService() {
     throw UnimplementedError('stopScannerService() has not been implemented.');
   }
 }

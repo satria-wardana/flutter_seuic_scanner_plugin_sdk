@@ -1,10 +1,8 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_seuic_scanner_plugin_sdk/BarcodeScanner.dart';
+import 'package:flutter_seuic_scanner_plugin_sdk/barcode_scanner.dart';
 import 'package:flutter_seuic_scanner_plugin_sdk/flutter_seuic_scanner_plugin_sdk.dart';
 
 void main() {
@@ -34,7 +32,7 @@ class _MyAppState extends State<MyApp> {
     _flutterSeuicScannerPluginSdkPlugin
         .getScanner()
         .listen((BarcodeScanner event) {
-      barcode = event.barcode ?? '无';
+      barcode = event.barcode;
       setState(() {
         _barCode = barcode;
       });
