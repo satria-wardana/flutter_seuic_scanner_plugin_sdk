@@ -42,7 +42,7 @@ public class ScannerService extends Service implements DecodeInfoCallBack {
             NotificationChannel channel = new NotificationChannel(id, description, importance);
             manager.createNotificationChannel(channel);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "messages")
-                    .setContentText("扫描服务正在后台运行")
+                    .setContentText("PickList-Service")
                     .setContentTitle("ScannerService")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
